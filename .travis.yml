@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t vilaverde/docker-react-travis -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true vilaverde/docker-react-travis yarn run test --coverage
